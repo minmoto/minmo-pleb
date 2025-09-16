@@ -1,0 +1,1 @@
+# minmo-partner-hub
