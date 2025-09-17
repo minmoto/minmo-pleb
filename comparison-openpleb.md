@@ -21,7 +21,7 @@ Both projects are built on the principle of **censorship-resistant, peer-to-peer
 |---------------------------|-------------------------------------|-------|
 | Swap direction            | Off-ramp only (BTC → Fiat)         | Both on-ramp (Fiat → BTC) and off-ramp (BTC → Fiat) |
 | Fiat rails supported      | Bank QR codes only                 | Multiple: QR codes, mobile money, bank transfers, etc. |
-| Escrow mechanism          | Bonds via ecash tokens (Cashu)     | Time-locked escrow with auto-release + evidence scoring |
+| Escrow mechanism          | Bonds via ecash tokens (Cashu)     | Fedimint ecash escrow with time-locked auto-release + evidence scoring |
 | Dispute coverage          | Payment disputes                   | Payment, unresponsiveness, partial payments, invalid details |
 | Resolution transparency   | Early-stage, in development        | Defined rules + audit trail |
 | Target use case           | Local, peer off-ramps              | Global agent exchange infra, embedded into apps |
@@ -38,7 +38,7 @@ Both projects are built on the principle of **censorship-resistant, peer-to-peer
 2. **Dispute Handling**  
    - OpenPleb: focuses on **payment disputes**.  
    - Minmo: expands coverage (timeouts, partials, invalid details).  
-   - Intersection: Minmo’s evidence + timeout model could complement OpenPleb’s bond system.  
+   - Intersection: Minmo's Fedimint-based evidence + timeout model could complement OpenPleb's Cashu bond system.  
 
 3. **Payment Methods**  
    - OpenPleb: QR banking rails.  
@@ -58,7 +58,7 @@ graph TD
     subgraph "OpenPleb Only"
         A1["Off-ramp swaps only"]
         A2["Bank QR codes"]
-        A3["Cashu bonds"]
+        A3["Cashu ecash bonds"]
     end
     
     subgraph "Shared Features"
@@ -70,7 +70,7 @@ graph TD
     subgraph "Minmo Extensions"
         B1["On + Off ramp"]
         B2["Multi-rail support"]
-        B3["Evidence-based disputes"]
+        B3["Fedimint ecash + evidence disputes"]
     end
     
     A1 -.-> S1
