@@ -54,12 +54,31 @@ Both projects are built on the principle of **censorship-resistant, peer-to-peer
 ## Diagram: Overlap vs Extension
 
 ```mermaid
-venn
-    A[OpenPleb]
-    B[Minmo]
-    A: "Off-ramp swaps\nBank QR codes\nCashu bonds"
-    B: "On + Off ramp\nMulti-rail support\nEvidence-based disputes"
-    A & B: "P2P agents\nEscrow first\nCensorship resistance"
+graph TD
+    subgraph "OpenPleb Only"
+        A1["Off-ramp swaps only"]
+        A2["Bank QR codes"]
+        A3["Cashu bonds"]
+    end
+    
+    subgraph "Shared Features"
+        S1["P2P agents"]
+        S2["Escrow first"]
+        S3["Censorship resistance"]
+    end
+    
+    subgraph "Minmo Extensions"
+        B1["On + Off ramp"]
+        B2["Multi-rail support"]
+        B3["Evidence-based disputes"]
+    end
+    
+    A1 -.-> S1
+    A2 -.-> S2
+    A3 -.-> S3
+    S1 -.-> B1
+    S2 -.-> B2
+    S3 -.-> B3
 ```
 
 ---
