@@ -1,67 +1,100 @@
-# Overview
+# Minmo Escrow & Dispute System
 
-Escrow and dispute resolution are critical to making agent-based Bitcoin swaps safe and fair.  
-Without these systems, users risk losing funds whenever fiat moves outside the protocol. Minmo uses **Fedimint ecash** for secure, decentralized escrow.
+## Executive Summary
 
-Minmo’s approach extends existing community efforts (like OpenPleb) by covering:
-- **Both on-ramp and off-ramp flows**
-- **Multiple fiat payment methods** (QR codes, mobile money, bank transfers, others)
-- **Evidence-based dispute resolution** with clear, automated rules
-- **Time-locked auto-release** so no funds can ever remain locked indefinitely
+Minmo is building an **open, censorship-resistant agent exchange layer** that allows communities in Africa and the Global South to swap between Bitcoin and local fiat with fairness, safety, and transparency.
+Our goal is to solve the hardest problem in Bitcoin adoption: **reliable liquidity access for everyday users**, without relying on centralized exchanges.
 
----
+We provide:
 
-## Why Escrow Matters
+- A **common solution layer** for swaps that any community or app can embed.
+- A flexible **escrow + dispute resolution system** that ensures trust between users and agents.
+- Open standards designed to **interoperate with other projects** in this space.
 
-In every swap, one side sends **Bitcoin** and the other sends **fiat**.  
-The challenge: fiat payments happen outside the blockchain, so the protocol cannot verify them directly.
+## The Problem Space
 
-Fedimint ecash escrow ensures:
-1. **Funds are locked** until both sides fulfill their obligations.
-2. **Disputes are possible** if one side claims the other hasn't acted.
-3. **Fair resolution** via timeouts and evidence ensures neither party is left hanging.
+In the Global South, users face unique challenges when trying to swap between fiat and Bitcoin:
 
----
+- **Liquidity gaps** – Centralized exchanges often ignore smaller markets, leaving communities dependent on informal P2P trades.
+- **Unreliable agents** – Local money changers operate without escrow, leading to disputes and loss of funds.
+- **Payment fragmentation** – QR banking codes, mobile money, and bank transfers coexist, but no single system supports them all.
+- **High risk of fraud** – With fiat moving outside the blockchain, disputes are common and hard to resolve.
 
-## Core Principles
+Without reliable swap infrastructure, adoption stalls even if people want to hold or use Bitcoin.
 
-1. **Fairness** – Decisions rely on evidence, not admin intervention.
-2. **Transparency** – Every resolution has an audit trail and reason.
-3. **Automation** – Manual arbitration is minimized; timeouts resolve most disputes.
-4. **Safety** – Funds can’t be lost or locked forever.
-5. **Flexibility** – Works across different fiat rails (QR codes, mobile money, bank transfers).
-6. **Interoperability** – Open design that can interconnect with projects like OpenPleb.
+## Common Solution Layer
 
----
+Minmo provides a **layer for safe swaps**:
 
-## Escrow Lifecycle at a Glance
+- **Escrow first**: BTC is locked before fiat moves.
+- **Timeouts everywhere**: no funds can remain locked forever.
+- **Evidence-based disputes**: both sides can submit proof, system resolves fairly.
+- **Multi-rail support**: QR codes, mobile money, and bank transfers all supported.
 
-```mermaid
-flowchart TD
-    subgraph OffRamp["Off-Ramp: BTC → Fiat"]
-        A1[User deposits BTC] --> A2[BTC locked in escrow]
-        A2 --> A3[Agent sends fiat to user]
-        A3 --> A4[User confirms or disputes]
-        A4 --> A5[Escrow releases BTC to agent]
-    end
+This layer can be embedded into apps, integrated with federations, or run by independent agents.
 
-    subgraph OnRamp["On-Ramp: Fiat → BTC"]
-        B1[User requests BTC] --> B2[Agent locks BTC in escrow]
-        B2 --> B3[User sends fiat]
-        B3 --> B4[Agent confirms or disputes]
-        B4 --> B5[Escrow releases BTC to user]
-    end
-```
+## High-Level Components
 
----
+- **Agent Network** – individuals who provide liquidity, either on-ramp or off-ramp.
+- **Escrow Service** – holds BTC until swap conditions are met.
+- **Dispute Engine** – resolves disputes using timeouts + evidence rules.
+- **Swap Lifecycle** – standard state machine for both on-ramp and off-ramp swaps.
 
-## Shared Vision with OpenPleb
+For detailed specs see:
 
-Both Minmo and OpenPleb are built on the principle of **censorship-resistant, peer-to-peer swaps**.  
-Where we extend their model is in:
-- **Escrow technology**: Minmo uses Fedimint ecash while OpenPleb uses Cashu ecash tokens.
-- Handling **both swap directions** (they currently handle only off-ramps).
-- Covering **more fiat payment types** (they focus on QR banking codes).
-- Defining **broader dispute coverage** (unresponsiveness, partial payments, invalid details).
+- [Escrow Flows](./escrow-flows.md)
+- [Dispute Flows](./dispute-flows.md)
 
-This creates an opportunity for **interoperability**: aligning our escrow and dispute logic so agents and users can operate across both platforms.
+## Solution Deep Dive
+
+### Parties Involved
+
+- **Maker** – provides liquidity (BTC or fiat).
+- **Taker** – initiates a swap.
+
+### Flows
+
+- **Off-Ramp (BTC → Fiat)**: user deposits BTC, agent sends fiat, BTC released after confirmation.
+- **On-Ramp (Fiat → BTC)**: agent locks BTC, user sends fiat, BTC released after confirmation.
+
+### Dispute Resolution
+
+- **Payment disputes** → evidence from both sides, auto-resolved after timeout.
+- **Unresponsiveness** → timeouts decide in favor of the responsive party.
+- **Partial payments / invalid details** → proportional split or refund.
+
+See [Dispute Flows](./dispute-flows.md) for details.
+
+## Similar Efforts
+
+We are not alone in this mission. Projects like **OpenPleb** are building censorship-resistant off-ramp systems.
+
+- **OpenPleb GitHub Repo**: [gandlafbtc/open-pleb](https://github.com/gandlafbtc/open-pleb)
+
+### Comparison
+
+
+| Aspect           | OpenPleb          | Minmo                                               |
+| ------------------ | ------------------- | ----------------------------------------------------- |
+| Swap direction   | Off-ramp only     | Both on-ramp & off-ramp                             |
+| Fiat rails       | Bank QR codes     | QR, mobile money, bank transfers                    |
+| Escrow mechanism | Cashu token bonds | Fedimint ecash + evidence disputesTime-locked       |
+| Dispute coverage | Payment disputes  | Payment, unresponsiveness, partial, invalid details |
+
+See [Comparison with OpenPleb](./comparison-open-pleb.md).
+
+## Possible Collaboration
+
+We believe the ecosystem grows stronger when projects work together.Opportunities for collaboration include:
+
+- **Open source alignment** – publish and evolve specs together.
+- **Shared escrow tech** – align on state machine and auto-release rules.
+- **Shared dispute resolution logic** – open standards for evidence and outcomes.
+
+## Next Steps
+
+This repo provides the foundation for Minmo’s escrow and dispute system.Please see the following documents for more details:
+
+- [Escrow Flows](./escrow-flows.md)
+- [Dispute Flows](./dispute-flows.md)
+- [Comparison with OpenPleb](./comparison-openpleb.md)
