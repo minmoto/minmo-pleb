@@ -75,9 +75,9 @@ We are not alone in this mission. Projects like **OpenPleb** are building censor
 
 
 | Aspect           | OpenPleb          | Minmo                                               |
-| ------------------ | ------------------- | ----------------------------------------------------- |
+| ---------------- | ------------------- | ------------------------------------------------- |
 | Swap direction   | Off-ramp only     | Both on-ramp & off-ramp                             |
-| Fiat rails       | Bank QR codes     | QR, mobile money, bank transfers                    |
+| Fiat Channels    | Bank QR codes     | QR, mobile money, bank transfers                    |
 | Escrow mechanism | Cashu token bonds | Fedimint ecash + evidence disputesTime-locked       |
 | Dispute coverage | Payment disputes  | Payment, unresponsiveness, partial, invalid details |
 

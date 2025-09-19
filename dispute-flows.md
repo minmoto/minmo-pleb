@@ -111,7 +111,7 @@ flowchart TD
 |--------------------------|----------------------------|-------|
 | Dispute coverage         | Mainly payment disputes    | Payment, unresponsiveness, partial, invalid details |
 | Escrow resolution method | Bonds with Cashu ecash tokens    | Fedimint ecash with timeouts + evidence-based scoring |
-| Fiat rails considered    | Bank QR codes              | Multiple (QR, bank transfer, mobile money) |
+| Fiat Channels considered | Bank QR codes              | Multiple (QR, bank transfer, mobile money) |
 | Resolution transparency  | Still in development       | Defined audit trail + scoring rules |
 
 ---
