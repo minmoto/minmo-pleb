@@ -29,13 +29,13 @@ sequenceDiagram
     participant U as User
     participant E as Escrow
     participant A as Agent
-    participant F as Fiat Rail
+    participant FC as Fiat Channel
 
     U->>E: Deposit BTC
     E-->>U: BTC locked in escrow
     E-->>A: Send fiat instructions
-    A->>F: Pay fiat to user account
-    F-->>U: Fiat received
+    A->>FC: Pay fiat to user account
+    FC-->>U: Fiat received
     U->>E: Confirm OR dispute
     alt Confirm
         E->>A: Release BTC
@@ -61,12 +61,12 @@ sequenceDiagram
     participant U as User
     participant E as Escrow
     participant A as Agent
-    participant F as Fiat Rail
+    participant FC as Fiat Channel
 
     U->>A: Request BTC
     A->>E: Lock BTC in escrow
-    U->>F: Send fiat to agent
-    F-->>A: Fiat received
+    U->>FC: Send fiat to agent
+    FC-->>A: Fiat received
     A->>E: Confirm OR dispute
     alt Confirm
         E->>U: Release BTC

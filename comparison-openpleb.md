@@ -10,7 +10,7 @@ The goal is to identify areas of shared values and potential collaboration, whil
 Both projects are built on the principle of **censorship-resistant, peer-to-peer swaps**:
 - Open-source ethos: code and standards open to the community.  
 - Agents, not institutions, are the core liquidity providers.  
-- Fiat rails are used directly, without centralized custodians.  
+- Fiat Channels are used directly, without centralized custodians.
 - Escrow ensures Bitcoin is only released when fiat obligations are met.  
 
 ---
@@ -20,7 +20,7 @@ Both projects are built on the principle of **censorship-resistant, peer-to-peer
 | Aspect                   | OpenPleb                           | Minmo |
 |---------------------------|-------------------------------------|-------|
 | Swap direction            | Off-ramp only (BTC → Fiat)         | Both on-ramp (Fiat → BTC) and off-ramp (BTC → Fiat) |
-| Fiat rails supported      | Bank QR codes only                 | Multiple: QR codes, mobile money, bank transfers, etc. |
+| Fiat Channels supported   | Bank QR codes only                 | Multiple: QR codes, mobile money, bank transfers, etc. |
 | Escrow mechanism          | Bonds via ecash tokens (Cashu)     | Fedimint ecash escrow with time-locked auto-release + evidence scoring |
 | Dispute coverage          | Payment disputes                   | Payment, unresponsiveness, partial payments, invalid details |
 | Resolution transparency   | Early-stage, in development        | Defined rules + audit trail |
